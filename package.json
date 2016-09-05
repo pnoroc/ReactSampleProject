@@ -1,0 +1,19 @@
+{
+  "name": "react-sample-project",
+  "version": "0.0.1",
+  "description": "Homework test application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pnoroc/ReactSampleProject.git"
+  },
+  "author": "pnoroc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pnoroc/ReactSampleProject/issues"
+  },
+  "homepage": "https://github.com/pnoroc/ReactSampleProject#readme"
+}
