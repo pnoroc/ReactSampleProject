@@ -39,3 +39,4 @@ Thumbs.db
 #Dependecy libraries
 ####################
 node_modules
+.idea
