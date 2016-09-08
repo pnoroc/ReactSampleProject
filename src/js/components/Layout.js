@@ -11,7 +11,6 @@ export default class Layout extends React.Component {
 			<div>
 				<h2>User Table</h2>
 				<Users />
-				<Groups />
 			</div>
 		)
 	}
