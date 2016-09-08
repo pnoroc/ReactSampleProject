@@ -12,23 +12,36 @@ class UserStore extends EventEmitter {
         name: "Jason Borne",
         email: "bornid@movie.com",
         group: "Movies",
+        assigned: true
       },
       {
         id: _.random(1,999),
         name: "Bruce Wayne",
         email: "bat@gotham.com",
         group: "Movies",
+        assigned: true
       },
+      {
+        id: _.random(1,999),
+        name: "N.Zakas",
+        email: "nzak@oreilly.com",
+        group: "",
+        assigned: false
+      }
     ];
   }
 
-  createUser(text) {
-    const id = Date.now();
+  createUser(data) {
+    
+    const id = _.random(1,999);
+    const assigned = data.group.length > 0;
+    const {name, group} = data;
 
     this.users.push({
       id,
-      text,
-      complete: false,
+      name,
+      group,
+      assigned,
     });
 
     this.emit("change");
@@ -41,7 +54,7 @@ class UserStore extends EventEmitter {
   handleActions(action) {
     switch(action.type) {
       case "CREATE_USER": {
-        this.createUser(action.text);
+        this.createUser(action.data);
         break;
       }
       case "RECEIVE_USERS": {

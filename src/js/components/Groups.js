@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 
+import Group from "./Groups/Group";
+import UserStore from "../stores/UserStore";
+
 export default class Groups extends Component {
 
 	render(){
@@ -8,8 +11,7 @@ export default class Groups extends Component {
 			<div class="panel panel-primary">
 				<div class="panel-heading"><b>Groups</b></div>
 				<div class="panel-body">
-					<table class="table table-striped table-responsive">
-					</table>
+					<Group />
 				</div>
 			</div>
 		)

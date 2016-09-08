@@ -20,6 +20,17 @@ export default class Users extends Component {
 		})
 	}
 
+	componentWillMount() {
+		UserStore.on("change", this.getUsers);
+	}
+
+	componentWillUnmount() {
+		UserStore.removeListener("change", this.getUsers);
+	}
+
+	reloadUsers(){
+		UsersAction.reloadUsers();
+	}
 
 	render(){
 
@@ -36,23 +47,20 @@ export default class Users extends Component {
 						<b>User List</b>
 					</div>
 					<div class="panel-body">
-						<button class="btn btn-success">
-							Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						</button>
-
-						<table class="table table-responsive table-boarded">
-							<thead>
-								<tr>
-									<th>#Id</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Group</th>
-								</tr>
-							</thead>
-							<tbody>
-								{UserComponents}
-							</tbody>
-						</table>
+						<div class="user-table-box">
+							<table class="table table-responsive table-boarded">
+								<thead>
+									<tr>
+										<th>#Id</th>
+										<th>Name</th>
+										<th>Group</th>
+									</tr>
+								</thead>
+								<tbody>
+									{UserComponents}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

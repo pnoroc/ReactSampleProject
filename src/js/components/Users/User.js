@@ -17,7 +17,6 @@ export default class User extends Component {
 				<tr>
 					<td>{id}</td>
 					<td>{name}</td>
-					<td>{email}</td>
 					<td>{group}</td>
 				</tr>
 		)

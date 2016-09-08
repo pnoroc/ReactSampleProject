@@ -2,6 +2,7 @@ import React from "react";
 
 import Groups from "./Groups";
 import Users from "./Users";
+import UserForm from "./Users/UserForm";
 
 export default class Layout extends React.Component {
 
@@ -9,8 +10,9 @@ export default class Layout extends React.Component {
 		return (
 
 			<div>
-				<h2>User Table</h2>
+				<UserForm />
 				<Users />
+				<Groups />
 			</div>
 		)
 	}
