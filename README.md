@@ -12,4 +12,4 @@ Homework test application
 - cd ReactSampleProject
 - npm run setup
 - npm run dev
-- open open http://localhost:8080
+- open http://localhost:8080
