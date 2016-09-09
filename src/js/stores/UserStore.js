@@ -45,6 +45,7 @@ class UserStore extends EventEmitter {
     });
 
     this.emit("change");
+    this.emit("user_created");
   }
 
   getAll() {

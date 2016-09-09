@@ -21,12 +21,12 @@ export default class UserFrom extends Component{
 
 	render(){
 		return (
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<h3 class="">Add User</h3>
+
+				<div>
+
 
 					<div class="row">
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<div class="input-group">
 								<label>
 									Name
@@ -38,7 +38,7 @@ export default class UserFrom extends Component{
 								/>
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<div class="input-group">
 								<label>
 									Group
@@ -50,18 +50,18 @@ export default class UserFrom extends Component{
 								/>
 							</div>
 						</div>
-						<div class="col-sm-3"></div>
+						<div class="col-sm-4"></div>
 					</div>
 
 		        	<button
 		        		type="button"
-		        		class="btn btn-primary top-margin"
+		        		class="btn btn-primary margin-top"
 		        		onClick={this.handleSubmitForm.bind(this)}>
 		            	Add 
 		        	</button>
 
 		      </div>
-	      </div>
+
 		)
 	}
 

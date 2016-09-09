@@ -3,6 +3,8 @@ import React, {Component} from "react";
 import User from "./Users/User";
 import * as UsersAction from "../actions/UsersAction";
 import UserStore from "../stores/UserStore";
+import CreateUserModal from "./Users/CreateUserModal";
+import UsersMenu from "./Users/UsersMenu";
 
 export default class Users extends Component {
 
@@ -47,11 +49,23 @@ export default class Users extends Component {
 						<b>User List</b>
 					</div>
 					<div class="panel-body">
+						<div class="row">
+
+							<div class="col-sm-2">
+								<CreateUserModal />
+							</div>
+							<div class="col-sm-2">
+								<UsersMenu />
+							</div>
+							
+							<div class="col-sm-8">
+							</div>
+						</div>
 						<div class="user-table-box">
 							<table class="table table-responsive table-boarded">
 								<thead>
 									<tr>
-										<th>#Id</th>
+										<th></th>
 										<th>Name</th>
 										<th>Group</th>
 									</tr>
