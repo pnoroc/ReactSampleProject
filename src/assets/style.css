@@ -6,3 +6,7 @@
 	z-index: 99;
 	cursor: pointer !important;
 }
+
+.top-margin{
+	margin-top: 20px;
+}

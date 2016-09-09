@@ -56,13 +56,17 @@ export default class Groups extends Component {
 			})
 		});
 
-		const GroupComponents = arr.map((group) => {
+		let GroupComponents = arr.map((group) => {
 
 			const id = _.random(1, 999);
 			return <Group key={id}
 					groupName={group.group_name}
 					members={group.members}/>
 		})
+
+		if (GroupComponents.length === 0) {
+			GroupComponents = "No groups created"
+		}
 
 
 		return (

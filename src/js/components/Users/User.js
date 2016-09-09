@@ -16,10 +16,24 @@ export default class User extends Component {
 		UsersAction.removeUser(id);
 	}
 
+	assignUserToGroup(e){
+
+		const {id} = this.state;
+		UsersAction.assignUserToGroup(id);
+	}
+
 
 	render(){
 
-		const { id,name,email,group } = this.state;
+		const { id,name,email } = this.state;
+
+		const group = this.state.assigned ? this.state.group : 
+												<button class="btn btn-info btn-xs"
+												onClick={this.assignUserToGroup.bind(this)}
+												rel={id}>
+													assign
+												</button>
+
 
 		return (
 
