@@ -51,6 +51,12 @@ class UserStore extends EventEmitter {
     return this.users;
   }
 
+  removeUser(id){
+
+    _.remove(this.users, user => user.id === id)
+    this.emit("change")
+  }
+
   handleActions(action) {
     switch(action.type) {
       case "CREATE_USER": {
@@ -59,6 +65,11 @@ class UserStore extends EventEmitter {
       }
       case "RECEIVE_USERS": {
         this.users = action.users;
+        this.emit("change");
+        break;
+      }
+      case "DELETE_USER": {
+        this.removeUser(action.id);
         this.emit("change");
         break;
       }

@@ -21,3 +21,11 @@ export function createUser(data){
     data
   })
 }
+
+export function removeUser(id){
+
+  dispatcher.dispatch({
+    type: "DELETE_USER",
+    id
+  })
+}

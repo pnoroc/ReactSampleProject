@@ -1,3 +1,8 @@
 .user-table-box{
 	margin: 20px 10px;
 }
+
+.pointer {
+	z-index: 99;
+	cursor: pointer !important;
+}
