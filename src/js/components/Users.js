@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 
+import _ from "lodash";
 import User from "./Users/User";
 import * as UsersAction from "../actions/UsersAction";
 import UserStore from "../stores/UserStore";
 import CreateUserModal from "./Users/CreateUserModal";
-import UsersMenu from "./Users/UsersMenu";
 
 export default class Users extends Component {
 
@@ -34,11 +34,44 @@ export default class Users extends Component {
 		UsersAction.reloadUsers();
 	}
 
+	removeUsers(){
+		const checkedUsers = this.getCheckedUsers();
+
+		if(checkedUsers.length > 0){
+			const ids = checkedUsers.map((user) => user.id)
+			UsersAction.removeUsers(ids);
+		}
+	}
+
+	handleItemChecked(user_id, val){
+
+		this.setState((previousState, currentProps) => {
+
+			_.each(previousState.users, (user) =>{
+				if(user.id === user_id){
+					user.checked = val
+				}
+
+			})
+
+			return previousState;
+		})
+	}
+
+	getCheckedUsers(){
+		return _.filter(this.state.users, (user) => user.checked)
+	}
+
 	render(){
 
 		const {users} = this.state;
+
 		const UserComponents = users.map((user) => {
-			return <User key={user.id} {...user}/>
+			user.onChange = this.handleItemChecked.bind(this);
+			return <User
+					key={user.id}
+					{...user}
+					ref="userItem"/>
 		});
 
 		return (
@@ -55,7 +88,16 @@ export default class Users extends Component {
 								<CreateUserModal />
 							</div>
 							<div class="col-sm-2">
-								<UsersMenu />
+								<div class="dropdown">
+								  <button class="btn btn-info user-menu-btn dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    <b>Actions  </b>
+								    <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								    <li><a>Assign Group</a></li>
+								    <li><a onClick={this.removeUsers.bind(this)}>Remove</a></li>
+								  </ul>
+								</div>
 							</div>
 							
 							<div class="col-sm-8">

@@ -22,12 +22,16 @@ export function createUser(data){
   })
 }
 
-export function removeUser(id){
+export function removeUsers(ids){
 
-  dispatcher.dispatch({
-    type: "DELETE_USER",
-    id
+  ids.map((id) => {
+    
+    dispatcher.dispatch({
+      type: "DELETE_USER",
+      id
+    })
   })
+
 }
 
 export function assignUserToGroup(id,group){

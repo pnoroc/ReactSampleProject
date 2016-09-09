@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import * as UsersAction from "../../actions/UsersAction";
-import Modal from "./Modal";
 
 
 export default class User extends Component {
@@ -10,19 +9,10 @@ export default class User extends Component {
 		this.state = props
 	}
 
-	removeUser(e){
-
-		const {id} = this.state;
-
-		UsersAction.removeUser(id);
+	handleChange(e){
+		const {id} = this.state
+		this.state.onChange( id, e.target.checked )
 	}
-
-	assignUserToGroup(e){
-
-		const {id} = this.state;
-		UsersAction.assignUserToGroup(id);
-	}
-
 
 	render(){
 
@@ -33,7 +23,9 @@ export default class User extends Component {
 
 				<tr>
 					<td class="check-column">
-						<input type="checkbox" ref="checkbox" />
+						<input
+							type="checkbox"
+							onChange={this.handleChange.bind(this)} />
 					</td>
 					<td>{name}</td>
 					<td>{group}</td>
