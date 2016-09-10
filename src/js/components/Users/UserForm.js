@@ -5,6 +5,12 @@ export default class UserFrom extends Component{
 
 	constructor(){
 		super();
+
+		this.state = {inputVal: ""};
+	}
+
+	onInput(e){
+		this.setState({inputVal: e.target.value})
 	}
 
 	handleSubmitForm(e){
@@ -12,9 +18,10 @@ export default class UserFrom extends Component{
 
 		const refs = this.refs;
 		const data = {
-			name: refs.name.value,
+			name: this.state.inputVal,
 		}
 
+		this.setState({inputVal: ""})
 		UsersAction.createUser(data)
 	}
 
@@ -29,6 +36,8 @@ export default class UserFrom extends Component{
 							</label>
 							<input
 								type="text"
+								value={this.state.inputVal}
+								onChange={this.onInput.bind(this)}
 							    class="form-control"
 							    ref="name"
 							/>
