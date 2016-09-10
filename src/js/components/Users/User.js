@@ -19,11 +19,11 @@ export default class User extends Component {
 		const { id,name,email,group } = this.props;
 
 		const checked = this.props.checked ? true : false;
-
+		const className = this.props.checked ? "info" : "active";
 
 		return (
 
-				<tr>
+				<tr class={className}>
 					<td class="check-column">
 						<input
 							type="checkbox"
