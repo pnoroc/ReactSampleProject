@@ -36,16 +36,6 @@ export default class UserFrom extends Component{
 						</div>
 					</div>
 					<div class="col-sm-4">
-						<div class="input-group">
-							<label>
-								Group
-							</label>
-							<input
-							    type="text"
-							    class="form-control"
-							    ref="group"
-							/>
-						</div>
 					</div>
 					<div class="col-sm-4"></div>
 				</div>

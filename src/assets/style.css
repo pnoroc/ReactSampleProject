@@ -108,3 +108,8 @@ body{
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+.group-select{
+  font-size: 1.2em;
+  width: 180px!important;
+}

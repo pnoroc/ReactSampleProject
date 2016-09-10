@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import _ from "lodash";
+import UsersAction from "../../actions/UsersAction";
 
 export default class AssignUserModal extends Component {
 
@@ -24,46 +25,90 @@ export default class AssignUserModal extends Component {
   }
 
   componentWillMount() {
-
+    this.setState(this.props)
   }
 
   submitChanges(){
-    this.props.onSaveChanges()
+
+    const groupName = this.refs.selectGroup.selectedOptions[0].value;
+
+    this.props.onSaveChanges(groupName)
   }
 
+  addNewGroup(){
+    const value = this.refs.groupName.value;
+    this.setState({
+      groups: this.state.groups.concat({group_name: value}),
+      itemSelected: value
+    })
+  }
 
   render () {
 
     const coverClass = this.state.modalOpened ? 'modal-cover modal-cover-active' : 'modal-cover'
     const containerClass = this.state.modalOpened ? 'modal-container modal-container-active' : 'modal-container'
-    const {groups} = this.props;
-    let arr = [];
+    const {groups} = this.state;
 
-    _.mapKeys(groups,(members, group_name) => {
-
-      arr.push({
-        group_name,
-        members
-      })
-    });
-
-
-    const GroupComponents = arr.map((group) => {
+    const GroupComponents = groups.map((group) => {
       const id = _.random(1,9999);
-      return <li key={id}>{group.group_name}</li>
+      return <option key={id} value={group.group_name}>{group.group_name}</option>
     })
-
 
     return (
       <div>    
         <div class={containerClass}>
           <div class='modal-body'>
-          <h5>Chose the group to assign selected users.</h5>
-              {GroupComponents}
-             
+          <h5>Chose the group to assign selected users create new group.</h5>
+          <br/>
+
+          <div class="row">
+            <div class="col-xs-6">
+                <label>
+                  Chose a group
+                </label>
+
+            </div>
+            <div class="col-xs-6">
+                <label>
+                  Create new group
+                </label>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-6">
+
+                <div class="input-group">
+                  <select 
+                    class="form-control group-select"
+                    value={this.state.itemSelected}
+                    ref="selectGroup">
+                    {GroupComponents}
+                  </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="input-group">
+                  <input
+                      type="text"
+                      placeholder="Group Name"
+                      class="form-control"
+                      ref="groupName"/>
+                  <span class="input-group-btn">
+                    <button class="btn btn-info"
+                    type="button"
+                    onClick={this.addNewGroup.bind(this)}>Go!</button>
+                  </span>
+                </div>
+            </div>
+          </div>
+
+            <br/>
+
           <button 
             onClick={this.submitChanges}
-            class="btn btn-sm btn-primary">
+            class="btn btn-primary">
             Save
           </button>
           </div>

@@ -22,9 +22,21 @@ class GroupStore extends EventEmitter {
 		return _.filter(UserStore.getAll(), user => user.assigned);
 	}
 
+
 	getGroups(){
 
-		return _.groupBy(this.getAssignedUsers(), "group");
+		const groups =  _.groupBy(this.getAssignedUsers(), "group");
+	    let arr = [];
+
+	    _.mapKeys(groups,(members, group_name) => {
+
+	      arr.push({
+	        group_name,
+	        members
+	      })
+	    });
+
+		return arr;
 	}
 
 

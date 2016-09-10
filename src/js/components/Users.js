@@ -77,12 +77,16 @@ export default class Users extends Component {
 		this.refs.assignUserModal.modalToggle();
 	}
 
-	handleAssignToExistGroup(){
+	handleAssignToExistGroup( group_name ){
 		const checkedUsers = this.getCheckedUsers();
+
+		if(!group_name){
+			return
+		}
 
 		if(checkedUsers.length > 0){
 			const ids = checkedUsers.map((user) => user.id)
-			UsersAction.assignUserToGroup(ids, "ASD");
+			UsersAction.assignUserToGroup(ids, group_name);
 		}
 		this.flushCheckbox()
 	}
@@ -92,7 +96,7 @@ export default class Users extends Component {
 	}
 
 	flushCheckbox(){
-		
+
 		const users = this.state.users.map((user) => {
 			user.checked = false
 			return user;
@@ -126,9 +130,6 @@ export default class Users extends Component {
 						<div class="row">
 
 							<div class="col-sm-2">
-								<CreateUserModal />
-							</div>
-							<div class="col-sm-2">
 								<div class="dropdown">
 								  <button class="btn btn-info user-menu-btn dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 								    <b>Actions  </b>
@@ -138,16 +139,16 @@ export default class Users extends Component {
 	                                <li class="dropdown-submenu">
 						                <a>Assign Group</a>
 						                <ul class="dropdown-menu">
-						                  <li><a onClick={this.assignToExistGroup.bind(this)}>Existing Group</a></li>
-						                  <li><a onClick={this.assignToNewGroup.bind(this)}>New Group</a></li>
+						                  <li><a onClick={this.assignToExistGroup.bind(this)}>Existing or new Group</a></li>
 						                </ul>
 						              </li>
 								    <li><a onClick={this.removeUsers.bind(this)}>Remove</a></li>
 								  </ul>
 								</div>
 							</div>
-							
-							<div class="col-sm-8">
+
+							<div class="col-sm-2">
+								<CreateUserModal />
 							</div>
 						</div>
 						<div class="user-table-box">
