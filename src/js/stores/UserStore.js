@@ -12,8 +12,7 @@ class UserStore extends EventEmitter {
         name: "Jason Borne",
         email: "bornid@movie.com",
         group: "Movies",
-        assigned: true,
-        checked: true
+        assigned: true
       },
       {
         id: _.random(1,999),
@@ -35,14 +34,13 @@ class UserStore extends EventEmitter {
   createUser(data) {
     
     const id = _.random(1,999);
-    const assigned = data.group.length > 0;
     const {name, group} = data;
 
     this.users.push({
       id,
       name,
       group,
-      assigned,
+      assigned: false,
     });
 
     this.emit("change");
@@ -64,6 +62,7 @@ class UserStore extends EventEmitter {
       })
     })
     this.emit("change")
+    this.emit("successful_assigned")
 
   }
 

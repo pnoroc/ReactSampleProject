@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import _ from "lodash";
 import UsersAction from "../../actions/UsersAction";
+import UserStore from "../../stores/UserStore";
+import GroupStore from "../../stores/GroupStore";
 
 export default class AssignUserModal extends Component {
 
@@ -26,6 +28,12 @@ export default class AssignUserModal extends Component {
 
   componentWillMount() {
     this.setState(this.props)
+    UserStore.on("successful_assigned", this.modalToggle.bind(this));
+    UserStore.on("change", this.reloadGroups.bind(this));
+  }
+
+  reloadGroups(){
+    this.setState({groups: GroupStore.getGroups()})
   }
 
   submitChanges(){
@@ -36,11 +44,24 @@ export default class AssignUserModal extends Component {
   }
 
   addNewGroup(){
+
     const value = this.refs.groupName.value;
+
     this.setState({
       groups: this.state.groups.concat({group_name: value}),
-      itemSelected: value
+      optionSelected: value,
+      inputVal: ""
     })
+  }
+
+  onOptionSelected(e){
+    this.setState({
+      optionSelected: this.refs.selectGroup.selectedOptions[0].value
+    })
+  }
+
+  handleNewGroupInput(e){
+    this.setState({inputVal: e.target.value});
   }
 
   render () {
@@ -82,7 +103,8 @@ export default class AssignUserModal extends Component {
                 <div class="input-group">
                   <select 
                     class="form-control group-select"
-                    value={this.state.itemSelected}
+                    value={this.state.optionSelected}
+                    onChange={this.onOptionSelected.bind(this)}
                     ref="selectGroup">
                     {GroupComponents}
                   </select>
@@ -94,6 +116,8 @@ export default class AssignUserModal extends Component {
                       type="text"
                       placeholder="Group Name"
                       class="form-control"
+                      value={this.state.inputVal}
+                      onChange={this.handleNewGroupInput.bind(this)}
                       ref="groupName"/>
                   <span class="input-group-btn">
                     <button class="btn btn-info"

@@ -13,7 +13,6 @@ export default class UserFrom extends Component{
 		const refs = this.refs;
 		const data = {
 			name: refs.name.value,
-			group: refs.group.value
 		}
 
 		UsersAction.createUser(data)
