@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import UserFrom from "./UserForm";
+import UserFrom from "../Users/UserForm";
 import UserStore from "../../stores/UserStore";
 
 export default class CreateUserModal extends Component {
@@ -20,7 +20,6 @@ export default class CreateUserModal extends Component {
   }
 
   handleAccept(){
-    console.log("accepted");
     this.modalToggle();
   }
 

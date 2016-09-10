@@ -4,7 +4,7 @@ import _ from "lodash";
 import User from "./Users/User";
 import * as UsersAction from "../actions/UsersAction";
 import UserStore from "../stores/UserStore";
-import CreateUserModal from "./Users/CreateUserModal";
+import CreateUserModal from "./Modals/CreateUserModal";
 
 export default class Users extends Component {
 
@@ -62,10 +62,26 @@ export default class Users extends Component {
 		return _.filter(this.state.users, (user) => user.checked)
 	}
 
+	assignToExistGroup(){
+		
+		const confirm = window.confirm("Are you sure ?")
+
+		if(confirm){
+
+			const checked_users  = this.getCheckedUsers();
+			
+			console.log(checked_users);			
+		}
+
+	}
+
+	assignToNewGroup(){
+		console.log("assignToNewGroup")
+	}
+
 	render(){
 
 		const {users} = this.state;
-
 		const UserComponents = users.map((user) => {
 			user.onChange = this.handleItemChecked.bind(this);
 			return <User
@@ -94,7 +110,13 @@ export default class Users extends Component {
 								    <span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								    <li><a>Assign Group</a></li>
+	                                <li class="dropdown-submenu">
+						                <a>Assign Group</a>
+						                <ul class="dropdown-menu">
+						                  <li><a onClick={this.assignToExistGroup.bind(this)}>Existing Group</a></li>
+						                  <li><a onClick={this.assignToNewGroup.bind(this)}>New Group</a></li>
+						                </ul>
+						              </li>
 								    <li><a onClick={this.removeUsers.bind(this)}>Remove</a></li>
 								  </ul>
 								</div>

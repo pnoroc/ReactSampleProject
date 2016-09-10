@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import _ from "lodash";
 import Group from "./Groups/Group";
 import UserStore from "../stores/UserStore";
+import GroupStore from "../stores/GroupStore";
 
 export default class Groups extends Component {
 
@@ -42,6 +43,12 @@ export default class Groups extends Component {
 		})
 	}
 
+	createGroup(e){
+
+		e.preventDefault()
+
+	}
+
 	render(){
 
 
@@ -68,12 +75,15 @@ export default class Groups extends Component {
 			GroupComponents = "No groups created"
 		}
 
-
 		return (
 			<div class="panel panel-primary">
 				<div class="panel-heading"><b>Groups</b></div>
 				<div class="panel-body">
-					{GroupComponents}
+					<div class="row">
+						<div class="col-lg-12 margin-top">
+							{GroupComponents}
+						</div>
+					</div>
 				</div>
 			</div>
 		)
