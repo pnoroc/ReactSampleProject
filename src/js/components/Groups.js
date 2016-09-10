@@ -33,7 +33,7 @@ export default class Groups extends Component {
 
 	getGroups(){
 
-		return _.groupBy(this.getAssignedUsers(), "group");
+		return _.groupBy(GroupStore.getAssignedUsers(), "group");
 	}
 
 	reloadGroups(){
@@ -41,12 +41,6 @@ export default class Groups extends Component {
 			assigned_users: this.getAssignedUsers(),
 			groups: this.getGroups()
 		})
-	}
-
-	createGroup(e){
-
-		e.preventDefault()
-
 	}
 
 	render(){

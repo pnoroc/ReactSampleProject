@@ -16,7 +16,9 @@ export default class User extends Component {
 
 	render(){
 
-		const { id,name,email,group } = this.state;
+		const { id,name,email,group } = this.props;
+
+		const checked = this.props.checked ? true : false;
 
 
 		return (
@@ -25,6 +27,7 @@ export default class User extends Component {
 					<td class="check-column">
 						<input
 							type="checkbox"
+							checked={checked}
 							onChange={this.handleChange.bind(this)} />
 					</td>
 					<td>{name}</td>

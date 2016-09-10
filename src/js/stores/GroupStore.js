@@ -8,8 +8,9 @@ class GroupStore extends EventEmitter {
 
 	constructor(){
 		super();
+		
 		this.getGroups = this.getGroups.bind(this);
-
+		this.getAssignedUsers = this.getAssignedUsers.bind(this);
 	}
 
 	getGroups(){
@@ -17,4 +18,18 @@ class GroupStore extends EventEmitter {
 		return _.groupBy(this.getAssignedUsers(), "group");
 	}
 
+	getAssignedUsers(){
+		return _.filter(UserStore.getAll(), user => user.assigned);
+	}
+
+	getGroups(){
+
+		return _.groupBy(this.getAssignedUsers(), "group");
+	}
+
+
 }
+
+const groupStore = new GroupStore;
+
+export default groupStore;

@@ -34,11 +34,11 @@ export function removeUsers(ids){
 
 }
 
-export function assignUserToGroup(id,group){
+export function assignUserToGroup(ids,group){
 
-  dispatcher.dispatch({
-    type: "ASSIGN_USER_TO_GROUP",
-    id,
-    group
-  })
+    dispatcher.dispatch({
+      type: "ASSIGN_USER_TO_GROUP",
+      ids,
+      group
+    })
 }

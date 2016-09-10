@@ -5,21 +5,35 @@ import User from "./Users/User";
 import * as UsersAction from "../actions/UsersAction";
 import UserStore from "../stores/UserStore";
 import CreateUserModal from "./Modals/CreateUserModal";
+import AssignUserModal from "./Modals/AssignUserModal";
+import GroupStore from "../stores/GroupStore";
 
 export default class Users extends Component {
 
 	constructor(){
 		super();
 		this.getUsers = this.getUsers.bind(this);
+		this.getGroups = this.getGroups.bind(this);
 		this.state = {
-			users: UserStore.getAll()
+			users: UserStore.getAll(),
+			groups: this.getGroups()
 		}
+
 	}
 
 	getUsers(){
+
+		const groups = this.getGroups() 
+		const users = UserStore.getAll()
+
 		this.setState({
-			users: UserStore.getAll()
+			users,
+			groups
 		})
+	}
+
+	getGroups(){
+		return GroupStore.getGroups();	
 	}
 
 	componentWillMount() {
@@ -28,10 +42,6 @@ export default class Users extends Component {
 
 	componentWillUnmount() {
 		UserStore.removeListener("change", this.getUsers);
-	}
-
-	reloadUsers(){
-		UsersAction.reloadUsers();
 	}
 
 	removeUsers(){
@@ -63,21 +73,36 @@ export default class Users extends Component {
 	}
 
 	assignToExistGroup(){
-		
-		const confirm = window.confirm("Are you sure ?")
 
-		if(confirm){
+		this.refs.assignUserModal.modalToggle();
+	}
 
-			const checked_users  = this.getCheckedUsers();
-			
-			console.log(checked_users);			
+	handleAssignToExistGroup(){
+		const checkedUsers = this.getCheckedUsers();
+
+		if(checkedUsers.length > 0){
+			const ids = checkedUsers.map((user) => user.id)
+			UsersAction.assignUserToGroup(ids, "ASD");
 		}
-
+		this.flushCheckbox()
 	}
 
 	assignToNewGroup(){
-		console.log("assignToNewGroup")
+
 	}
+
+	flushCheckbox(){
+		
+		const users = this.state.users.map((user) => {
+			user.checked = false
+			return user;
+		})
+
+		this.setState({
+			users
+		})
+	}
+
 
 	render(){
 
@@ -141,6 +166,9 @@ export default class Users extends Component {
 						</div>
 					</div>
 				</div>
+				<AssignUserModal ref="assignUserModal"
+					onSaveChanges={this.handleAssignToExistGroup.bind(this)}
+					groups={this.getGroups()}/>
 			</div>
 		)
 	}

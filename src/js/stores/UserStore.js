@@ -12,7 +12,8 @@ class UserStore extends EventEmitter {
         name: "Jason Borne",
         email: "bornid@movie.com",
         group: "Movies",
-        assigned: true
+        assigned: true,
+        checked: true
       },
       {
         id: _.random(1,999),
@@ -52,6 +53,19 @@ class UserStore extends EventEmitter {
     return this.users;
   }
 
+  assignUser(ids, group){
+
+    ids.map((id) => {
+      this.users.map((user) => {
+        if(user.id === id){
+          user.group = group
+        }
+      })
+    })
+    this.emit("change")
+
+  }
+
   removeUser(id){
 
     _.remove(this.users, user => user.id === id)
@@ -71,6 +85,11 @@ class UserStore extends EventEmitter {
       }
       case "DELETE_USER": {
         this.removeUser(action.id);
+        this.emit("change");
+        break;
+      }
+      case "ASSIGN_USER_TO_GROUP": {
+        this.assignUser(action.ids, action.group);
         this.emit("change");
         break;
       }
