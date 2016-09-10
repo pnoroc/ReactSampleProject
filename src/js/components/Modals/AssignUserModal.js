@@ -122,7 +122,7 @@ export default class AssignUserModal extends Component {
                   <span class="input-group-btn">
                     <button class="btn btn-info"
                     type="button"
-                    onClick={this.addNewGroup.bind(this)}>Go!</button>
+                    onClick={this.addNewGroup.bind(this)}>Add</button>
                   </span>
                 </div>
             </div>

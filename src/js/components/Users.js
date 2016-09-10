@@ -48,8 +48,14 @@ export default class Users extends Component {
 		const checkedUsers = this.getCheckedUsers();
 
 		if(checkedUsers.length > 0){
-			const ids = checkedUsers.map((user) => user.id)
-			UsersAction.removeUsers(ids);
+
+			const confirm = window.confirm("Remove this entities ?")
+
+			if(confirm){
+
+				const ids = checkedUsers.map((user) => user.id)
+				UsersAction.removeUsers(ids);
+			}
 		}
 	}
 
