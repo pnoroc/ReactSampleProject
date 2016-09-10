@@ -59,6 +59,7 @@ class UserStore extends EventEmitter {
       this.users.map((user) => {
         if(user.id === id){
           user.group = group
+          user.assigned = true
         }
       })
     })
