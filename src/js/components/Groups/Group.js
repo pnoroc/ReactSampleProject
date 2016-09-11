@@ -10,6 +10,22 @@ export default class Group extends Component{
 		this.state = props
 	}
 
+	componentWillMount(){
+		this.setState({
+			ariaExpanded: false,
+			panelClass: "panel-collapse collapse",
+			itemClass: "groups-item-text collapsed"
+		})
+	}
+
+	onPanelChange(e){
+		console.log(e)
+	}
+
+	onItemChange(e){
+		console.log(e)
+	}
+
 	render(){
 
 		const {groupName, members} = this.state;
@@ -24,18 +40,25 @@ export default class Group extends Component{
 			<div class="group-item-box">
 			    <div class="panel-heading bg-info" role="tab" id="headingOne">
 			      <h4 class="panel-title">
-			        <a class="groups-item-text collapsed" role="button" data-toggle="collapse"
+			        <a class={this.state.itemClass} role="button" data-toggle="collapse"
+			    		onChange={this.onItemChange.bind(this)}
 			        	data-parent="#accordion" href={referrence}
-			        	aria-expanded="false" aria-controls="collapseOne">
+			        	aria-expanded={this.state.ariaExpanded} aria-controls="collapseOne">
 			          {groupName}
 			        </a>
 			      </h4>
 			    </div>
-			    <div id={groupName} class="panel-collapse collapse" aria-expanded="false" role="tabpanel" aria-labelledby="headingOne">
+			    <div id={groupName} class={this.state.panelClass} 
+			    	onChange={this.onPanelChange.bind(this)}
+			    	aria-expanded={this.state.ariaExpanded} 
+			    	role="tabpanel" 
+			    	aria-labelledby="headingOne">
 			      <div class="panel-body">
-			      	<ul>
-			      		{MembersComponent}
-			      	</ul>
+			      	<table class="table table-striped table-resonsive">
+			      		<tbody>
+			      			{MembersComponent}
+			      		</tbody>
+			      	</table>
 			      </div>
 			    </div>
 		    </div>

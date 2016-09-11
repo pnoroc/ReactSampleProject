@@ -122,3 +122,6 @@ body{
 .group-item-box{
   margin: 5px 0px;
 }
+.pointer-cursor{
+  cursor: pointer!important;
+}

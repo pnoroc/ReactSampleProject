@@ -72,6 +72,14 @@ class UserStore extends EventEmitter {
     this.emit("change")
   }
 
+  removeUserFromGroup(id){
+    const user = _.find(this.users, user => user.id === id);
+    user.group = "";
+    user.assigned = false;
+
+    this.emit("change")
+  }
+
   handleActions(action) {
     switch(action.type) {
       case "CREATE_USER": {
@@ -93,6 +101,12 @@ class UserStore extends EventEmitter {
         this.emit("change");
         break;
       }
+      case "REMOVE_USER_FROM_GROUP": {
+        this.removeUserFromGroup(action.id);
+        this.emit("change");
+        break;
+      }
+
     }
   }
 

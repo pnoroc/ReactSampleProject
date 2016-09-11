@@ -42,3 +42,12 @@ export function assignUserToGroup(ids,group){
       group
     })
 }
+
+export function removeUserFromGroup(id){
+
+  dispatcher.dispatch({
+    type: "REMOVE_USER_FROM_GROUP",
+    id
+  })
+
+}
