@@ -75,7 +75,17 @@ export default class Groups extends Component {
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12 margin-top">
-							{GroupComponents}
+
+							<div 
+								class="panel-group"
+								id="groups_accordion" 
+								role="tablist" 
+								aria-multiselectable="true">
+
+									{GroupComponents}
+
+							</div>
+
 						</div>
 					</div>
 				</div>

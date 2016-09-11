@@ -113,3 +113,12 @@ body{
   font-size: 1.2em;
   width: 180px!important;
 }
+
+.groups-item-text{
+  font-size: 1.2em;
+  color: rgb(102, 102, 102) !important;
+}
+
+.group-item-box{
+  margin: 5px 0px;
+}
