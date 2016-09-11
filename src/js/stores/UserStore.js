@@ -34,12 +34,13 @@ class UserStore extends EventEmitter {
   createUser(data) {
     
     const id = _.random(1,999);
-    const {name, group} = data;
+    const {name, group, email} = data;
 
     this.users.push({
       id,
       name,
       group,
+      email,
       assigned: false,
     });
 

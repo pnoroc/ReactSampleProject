@@ -6,22 +6,26 @@ export default class UserFrom extends Component{
 	constructor(){
 		super();
 
-		this.state = {inputVal: ""};
+		this.state = {inputVal: "", emailVal: ""};
 	}
 
 	onInput(e){
-		this.setState({inputVal: e.target.value})
+		const { name, email } = this.refs;
+		this.setState({
+			inputVal: name.value,
+			emailVal: email.value
+		})
 	}
 
 	handleSubmitForm(e){
 		e.preventDefault();
 
-		const refs = this.refs;
 		const data = {
 			name: this.state.inputVal,
+			email: this.state.emailVal
 		}
 
-		this.setState({inputVal: ""})
+		this.setState({inputVal: "", emailVal: ""})
 		UsersAction.createUser(data)
 	}
 
@@ -44,8 +48,19 @@ export default class UserFrom extends Component{
 						</div>
 					</div>
 					<div class="col-sm-4">
+						<div class="input-group">
+							<label>
+								Email
+							</label>
+							<input
+								type="text"
+								value={this.state.emailVal}
+								onChange={this.onInput.bind(this)}
+							    class="form-control"
+							    ref="email"
+							/>
+						</div>
 					</div>
-					<div class="col-sm-4"></div>
 				</div>
 	        	<button
 	        		type="button"

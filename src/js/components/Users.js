@@ -163,6 +163,7 @@ export default class Users extends Component {
 									<tr>
 										<th></th>
 										<th>Name</th>
+										<th>Mail</th>
 										<th>Group</th>
 									</tr>
 								</thead>

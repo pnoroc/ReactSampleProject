@@ -31,6 +31,7 @@ export default class User extends Component {
 							onChange={this.handleChange.bind(this)} />
 					</td>
 					<td>{name}</td>
+					<td>{email}</td>
 					<td>{group}</td>
 
 				</tr>
