@@ -40,7 +40,11 @@ export default class AssignUserModal extends Component {
 
     const groupName = this.refs.selectGroup.selectedOptions[0].value;
 
-    this.props.onSaveChanges(groupName)
+    if (groupName) {
+
+      this.props.onSaveChanges(groupName)
+    }
+
   }
 
   addNewGroup(){

@@ -18,16 +18,7 @@ export default class Group extends Component{
 		})
 	}
 
-	onPanelChange(e){
-		console.log(e)
-	}
-
-	onItemChange(e){
-		console.log(e)
-	}
-
 	render(){
-
 		const {groupName, members} = this.state;
 		const referrence = "#" + groupName;
 		const MembersComponent = members.map((user) => {
@@ -41,7 +32,6 @@ export default class Group extends Component{
 			    <div class="panel-heading bg-info" role="tab" id="headingOne">
 			      <h4 class="panel-title">
 			        <a class={this.state.itemClass} role="button" data-toggle="collapse"
-			    		onChange={this.onItemChange.bind(this)}
 			        	data-parent="#accordion" href={referrence}
 			        	aria-expanded={this.state.ariaExpanded} aria-controls="collapseOne">
 			          {groupName}
@@ -49,7 +39,6 @@ export default class Group extends Component{
 			      </h4>
 			    </div>
 			    <div id={groupName} class={this.state.panelClass} 
-			    	onChange={this.onPanelChange.bind(this)}
 			    	aria-expanded={this.state.ariaExpanded} 
 			    	role="tabpanel" 
 			    	aria-labelledby="headingOne">
