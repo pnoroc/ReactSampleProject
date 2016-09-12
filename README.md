@@ -11,5 +11,7 @@ Homework test application
 - git clone https://github.com/pnoroc/ReactSampleProject.git
 - cd ReactSampleProject
 - npm run setup
+- npm run test
 - npm run dev
+
 - open http://localhost:8080
