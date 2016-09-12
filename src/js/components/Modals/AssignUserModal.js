@@ -81,7 +81,7 @@ export default class AssignUserModal extends Component {
 
     return (
       <div>    
-        <div class={containerClass}>
+        <div id="user_assign_modal" class={containerClass}>
           <div class='modal-body'>
           <h5>Chose the group to assign selected users create new group.</h5>
           <br/>

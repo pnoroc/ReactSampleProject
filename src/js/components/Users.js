@@ -18,7 +18,6 @@ export default class Users extends Component {
 			users: UserStore.getAll(),
 			groups: this.getGroups()
 		}
-
 	}
 
 	getUsers(){
@@ -148,7 +147,7 @@ export default class Users extends Component {
 						                  <li><a onClick={this.assignToExistGroup.bind(this)}>Existing or new Group</a></li>
 						                </ul>
 						              </li>
-								    <li><a onClick={this.removeUsers.bind(this)}>Remove</a></li>
+								    <li><a id="remove_users_btn" onClick={this.removeUsers.bind(this)}>Remove</a></li>
 								  </ul>
 								</div>
 							</div>

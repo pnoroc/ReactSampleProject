@@ -38,7 +38,7 @@ export default class CreateUserModal extends Component {
     const containerClass = this.state.modalOpened ? 'modal-container modal-container-active' : 'modal-container'
     return (
       <div>
-        <button class='btn btn-success user-menu-btn btn-xs' onClick={this.modalToggle}>
+        <button id="create_user_btn" class='btn btn-success user-menu-btn btn-xs' onClick={this.modalToggle}>
         <b>Create User</b> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
         
         <div class={containerClass}>
