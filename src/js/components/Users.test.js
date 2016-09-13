@@ -16,6 +16,14 @@ describe('Components: Users', () => {
 
 	describe('Component initiating', () => {
 
+		let wrapper;
+
+		beforeEach(() => {
+
+			spyOn(Users.prototype, 'componentWillMount');
+			wrapper = mount(<Users />);
+		})
+
 		it('should render properly', () => {
 
 			expect(
@@ -26,31 +34,30 @@ describe('Components: Users', () => {
 		});
 
 		it('should call componentWillMount', () => {
-			spyOn(Users.prototype, 'componentWillMount');
-		    const wrapper = mount(<Users />);
+		    
 		    expect(Users.prototype.componentWillMount).toHaveBeenCalled();
 		});
 		it('should set users and groups steate', () => {
 
-		    const wrapper = mount(<Users />);
+		    
 		    expect(wrapper.state('users').length).toBeGreaterThan(0);
 		    expect(wrapper.state('groups').length).toBeGreaterThan(0);
 
 		});
 
 		it('should render User components',() => {
-			const wrapper = shallow(<Users />);
-			expect(wrapper.find('tbody').children().length)
+			const shallowedWrap = shallow(<Users />);
+			expect(shallowedWrap.find('tbody').children().length)
 				.toEqual(
-					wrapper.state('users').length
+					shallowedWrap.state('users').length
 				);
 		});
 		it('should render CreateUser component', () => {
-			const wrapper = mount(<Users />);
+			
 			expect(wrapper.find('#create_user_btn').length).toEqual(1);
 		});
 		it('should render AssignUser component', () => {
-			const wrapper = mount(<Users />);
+			
 			expect(wrapper.find('#user_assign_modal').length).toEqual(1);
 		});
 
@@ -58,24 +65,23 @@ describe('Components: Users', () => {
 
 	describe('Users manipulation', () => {
 
-		it('should get all items selected before action', () =>{
+		let wrapper;
 
-			// spyOn(Users.prototype, 'getCheckedUsers')
-			// const wrapper = mount(<Users />)
-			// const removeBtn = wrapper.find('#remove_users_btn');
-
-			// Simulate.click(removeBtn);
-
-			// expect(Users.prototype.getCheckedUsers).toHaveBeenCalled();
-
-
+		beforeEach(() => {
+			spyOn(Users.prototype, 'removeUsers')
+			
+			wrapper = mount(<Users />);
 		})
 
-		describe('Remove users', () => {
+		it('should trigger removeUsers on click', () => {
 
+			const removeBtn = wrapper.find('#remove_users_btn');
 
+			removeBtn.simulate('click');
 
+			expect(Users.prototype.removeUsers).toHaveBeenCalled();
 		})
+
 
 	})
 
