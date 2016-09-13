@@ -1,5 +1,6 @@
 # ReactSampleProject
-Homework test application
+
+This is a sample of managing user creation dashboard using `react`/`flux` with minimal dependencies.
 
 ### Requirements:
 - GIT
